@@ -3,6 +3,8 @@ CPUMiner-Multi
 
 This is a multi-threaded CPU miner, fork of [LucasJones](//github.com/lucasjones)' cpuminer-multi.
 
+This version removes the manual prefetch, which results in a speedup on some CPUs.
+
 #### Table of contents
 
 * [Algorithms](#algorithms)
