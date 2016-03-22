@@ -1520,6 +1520,10 @@ static void parse_arg(int key, char *arg) {
         }
         break;
     }
+    case 'k':
+        opt_keepalive = true ;
+        applog(LOG_INFO, "Keepalive actived"); 
+       break;
     case 'q':
         opt_quiet = true;
         break;
