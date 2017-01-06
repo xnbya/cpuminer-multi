@@ -34,6 +34,7 @@
 #include "compat.h"
 #include "miner.h"
 #include "elist.h"
+#include <sys/time.h>
 
 struct data_buffer {
 	void		*buf;
@@ -101,15 +102,15 @@ void applog(int prio, const char *fmt, ...)
 		memcpy(&tm, tm_p, sizeof(tm));
 		pthread_mutex_unlock(&applog_lock);
 
+
+		struct timeval tvnow;
+		gettimeofday(&tvnow, NULL);
+
 		len = 40 + strlen(fmt) + 2;
 		f = alloca(len);
-		sprintf(f, "[%d-%02d-%02d %02d:%02d:%02d] %s\n",
-			tm.tm_year + 1900,
-			tm.tm_mon + 1,
-			tm.tm_mday,
-			tm.tm_hour,
-			tm.tm_min,
-			tm.tm_sec,
+		sprintf(f, "[%d-%d] %s\n",
+				tvnow.tv_sec,
+				tvnow.tx_usec,
 			fmt);
 		pthread_mutex_lock(&applog_lock);
 		vfprintf(stderr, f, ap);	/* atomic write to stderr */
