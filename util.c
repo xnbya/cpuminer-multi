@@ -110,7 +110,7 @@ void applog(int prio, const char *fmt, ...)
 		f = alloca(len);
 		sprintf(f, "[%d-%d] %s\n",
 				tvnow.tv_sec,
-				tvnow.tx_usec,
+				tvnow.tv_usec,
 			fmt);
 		pthread_mutex_lock(&applog_lock);
 		vfprintf(stderr, f, ap);	/* atomic write to stderr */
